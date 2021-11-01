@@ -21,7 +21,6 @@ class JiaoShiZiGeLogic
         } else {
             $res['status'] = 0;
             $res['msg'] = "无考生信息";
-
         }
         return $res;
     }

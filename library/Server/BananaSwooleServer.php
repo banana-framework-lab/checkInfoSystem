@@ -407,18 +407,31 @@ class BananaSwooleServer
                     $requestData = $form->getFormData();
                 }
             } catch (LogicException $webE) {
-                if (Container::getConfig()->get('app.debug', false)) {
+
+                $responseData = $this->appServer->getExceptionResponse($webE);
+                if (!empty($response)) {
                     $response->status(200);
-                    $response->end("{$webE->getMessage()}<br>{$webE->getTraceAsString()}");
+                    if (is_array($responseData)) {
+                        $response->header('Content-type', 'application/json;charset=UTF-8');
+                        $response->end(json_encode($responseData, JSON_UNESCAPED_UNICODE));
+                    } else {
+                        $response->end($responseData);
+                    }
+                } elseif (Container::getConfig()->get('app.debug', false)) {
+                    $response->status(200);
+                    $response->header('Content-type', 'text/plain;charset=UTF-8');
+                    $response->end("{$webE->getMessage()}{$webE->getTraceAsString()}");
                 } else {
                     $response->status(500);
                     $response->end();
                 }
+
                 return;
             } catch (Throwable $e) {
                 if (Container::getConfig()->get('app.debug', false)) {
                     $response->status(200);
-                    $response->end("{$e->getMessage()}<br>{$e->getTraceAsString()}");
+                    $response->header('Content-type', 'text/plain;charset=UTF-8');
+                    $response->end("{$e->getMessage()}{$e->getTraceAsString()}");
                 } else {
                     $response->status(500);
                     $response->end();
