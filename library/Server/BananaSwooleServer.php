@@ -415,6 +415,8 @@ class BananaSwooleServer
                         $response->header('Content-type', 'application/json;charset=UTF-8');
                         $response->end(json_encode($responseData, JSON_UNESCAPED_UNICODE));
                     } else {
+                        $response->status(200);
+                        $response->header('Content-type', 'text/plain;charset=UTF-8');
                         $response->end($responseData);
                     }
                 } elseif (Container::getConfig()->get('app.debug', false)) {
