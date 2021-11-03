@@ -3,14 +3,14 @@
 namespace App\Check\Logic;
 
 use App\Check\Model\MysqlModel\CheckInfoChengRenGaoKaoModel;
-use App\Check\Object\ChengRenGaoKaoObject;
+use App\Check\Object\ChengRenGaoKaoCheckObject;
 
 class ChengRenGaoKaoLogic
 {
     /**
-     * @param ChengRenGaoKaoObject $object
+     * @param ChengRenGaoKaoCheckObject $object
      */
-    public function check(ChengRenGaoKaoObject $object)
+    public function check(ChengRenGaoKaoCheckObject $object)
     {
         $result = (new CheckInfoChengRenGaoKaoModel())->check($object);
 

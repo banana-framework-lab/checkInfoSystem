@@ -4,7 +4,7 @@ namespace App\Check\Object;
 
 use Library\Abstracts\Object\AbstractObject;
 
-class ChengRenGaoKaoObject extends AbstractObject
+class ChengRenGaoKaoCheckObject extends AbstractObject
 {
     public $kaoshenghao;
 
