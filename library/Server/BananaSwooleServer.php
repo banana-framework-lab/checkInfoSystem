@@ -80,14 +80,13 @@ class BananaSwooleServer
      * BananaSwooleServer constructor.
      * @param string $serverConfigIndex
      */
-    public function __construct(string $serverConfigIndex = '')
+    public function __construct()
     {
-        if (!$serverConfigIndex) {
-            $bt = debug_backtrace();
-            $caller = array_shift($bt);
-            $fileName = explode('/', $caller['file']);
-            $serverConfigIndex = str_replace('.php', '', array_pop($fileName));
-        }
+        // 获取server的名字
+        $bt = debug_backtrace();
+        $caller = array_shift($bt);
+        $fileName = explode('/', $caller['file']);
+        $serverConfigIndex = str_replace('.php', '', array_pop($fileName));
 
         $this->serverConfigIndex = $serverConfigIndex;
         Container::setServerConfigIndex($this->serverConfigIndex);
@@ -143,6 +142,18 @@ class BananaSwooleServer
             echo "appServer对象不能为空" . PHP_EOL;
             exit;
         }
+
+        $pidFilePath = dirname(__FILE__) . "/../runtime/Server/";
+
+        if (!file_exists($pidFilePath)) {
+            mkdir($pidFilePath, 755, true);
+        }
+
+        // 记录master进程的id
+        $pidFilePath .= ".$this->serverConfigIndex";
+        $pidFile = fopen($pidFilePath, "w");
+        fwrite($pidFile, posix_getpid());
+        fclose($pidFile);
 
         $this->server->set([
             'worker_num' => $this->workerNum,
@@ -415,8 +426,6 @@ class BananaSwooleServer
                         $response->header('Content-type', 'application/json;charset=UTF-8');
                         $response->end(json_encode($responseData, JSON_UNESCAPED_UNICODE));
                     } else {
-                        $response->status(200);
-                        $response->header('Content-type', 'text/plain;charset=UTF-8');
                         $response->end($responseData);
                     }
                 } elseif (Container::getConfig()->get('app.debug', false)) {
@@ -427,13 +436,11 @@ class BananaSwooleServer
                     $response->status(500);
                     $response->end();
                 }
-
                 return;
             } catch (Throwable $e) {
                 if (Container::getConfig()->get('app.debug', false)) {
                     $response->status(200);
-                    $response->header('Content-type', 'text/plain;charset=UTF-8');
-                    $response->end("{$e->getMessage()}{$e->getTraceAsString()}");
+                    $response->end("{$e->getMessage()}<br>{$e->getTraceAsString()}");
                 } else {
                     $response->status(500);
                     $response->end();
