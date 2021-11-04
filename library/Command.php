@@ -168,6 +168,7 @@ class Command
     private function start()
     {
         $processNum = exec("ps -ef | grep 'php bananaSwoole server start' | grep '$this->serverName' | grep -v \"grep\" | wc -l");
+        var_dump($processNum);
         if ((int)$processNum <= 0) {
             $filePath = dirname(__FILE__) . "/../public/$this->serverName.php";
             if (file_exists($filePath)) {
