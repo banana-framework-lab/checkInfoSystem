@@ -7,7 +7,7 @@ use Library\Abstracts\Model\AbstractMySqlModel;
 
 class CheckInfoChengRenGaoKaoModel extends AbstractMySqlModel
 {
-    public $tableName = "checkinfo_zhuanchaben_info_";
+    public $tableName = "checkinfo_zhuanchaben_";
 
     public function check(ChengRenGaoKaoCheckObject $object)
     {
