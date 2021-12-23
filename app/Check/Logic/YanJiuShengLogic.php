@@ -16,7 +16,7 @@ class YanJiuShengLogic
 
         if ($result) {
             $res['status'] = 1;
-            $res['info'] = $result;
+            $res['info'] = [$result];
 
         } else {
             $res['status'] = 0;
