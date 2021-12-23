@@ -11,6 +11,6 @@ class CheckInfoYanJiuShengModel extends AbstractMySqlModel
 
     public function check(YanJiuShengCheckObject $object)
     {
-        return $this->builder->from($this->tableName . date('Y'))->where($object->toArray())->first();
+        return $this->builder->from($this->tableName . date('Y'))->where($object->toArray())->get();
     }
 }
