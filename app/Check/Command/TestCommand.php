@@ -13,11 +13,13 @@ use App\Check\Object\JiaoShiZiGeCheckObject;
 use App\Check\Object\PuTongHuaCheckObject;
 use App\Check\Object\ZhuanChaBenCheckObject;
 use Library\Abstracts\Command\AbstractCommand;
+use Library\Container;
 
 class TestCommand extends AbstractCommand
 {
     public function execute()
     {
+        Container::setMysqlPool('check');
 //        echo json_encode((new ChaBanShengLogic())->check(new ChaBanShengCheckObject([
 //            'zhun_kao_zheng_hao' => '',
 //            'xing_ming' => '',
@@ -39,7 +41,7 @@ class TestCommand extends AbstractCommand
 //        ])), JSON_UNESCAPED_UNICODE);
 
         echo json_encode((new ZhuanChaBenLogic())->check(new ZhuanChaBenCheckObject([
-            'zhun_kao_zheng_hao' => '1013613X',
+            'zheng_jian_hou_ba_wei' => '1013613X',
             'xing_ming' => '缪昊洋',
         ])), JSON_UNESCAPED_UNICODE);
     }
