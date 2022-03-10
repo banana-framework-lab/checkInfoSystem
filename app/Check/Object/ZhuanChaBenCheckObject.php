@@ -6,18 +6,18 @@ use Library\Abstracts\Object\AbstractObject;
 
 class ZhuanChaBenCheckObject extends AbstractObject
 {
-    public $info_zhengjianbianhao;
+    public $zheng_jian_hou_ba_wei;
 
-    public $info_xingming;
+    public $xing_ming;
 
     public function assignHook()
     {
-        if ($this->info_zhengjianbianhao) {
-            $this->info_zhengjianbianhao = strtolower($this->info_zhengjianbianhao);
+        if ($this->zheng_jian_hou_ba_wei) {
+            $this->zheng_jian_hou_ba_wei = strtolower($this->zheng_jian_hou_ba_wei);
         }
 
-        if ($this->info_xingming) {
-            $this->info_xingming = strtolower($this->info_xingming);
+        if ($this->xing_ming) {
+            $this->xing_ming = strtolower($this->xing_ming);
         }
     }
 }

@@ -18,29 +18,29 @@ class TestCommand extends AbstractCommand
 {
     public function execute()
     {
-        echo json_encode((new ChaBanShengLogic())->check(new ChaBanShengCheckObject([
-            'zhun_kao_zheng_hao' => '',
-            'xing_ming' => '',
-        ])), JSON_UNESCAPED_UNICODE);
-
-        echo json_encode((new ChengRenGaoKaoLogic())->check(new ChengRenGaoKaoCheckObject([
-            'zhun_kao_zheng_hao' => '',
-            'xing_ming' => '',
-        ])), JSON_UNESCAPED_UNICODE);
-
-        echo json_encode((new JiaoShiZiGeLogic())->check(new JiaoShiZiGeCheckObject([
-            'zhun_kao_zheng_hao' => '',
-            'xing_ming' => '',
-        ])), JSON_UNESCAPED_UNICODE);
-
-        echo json_encode((new PuTongHuaLogic())->check(new PuTongHuaCheckObject([
-            'zhun_kao_zheng_hao' => '',
-            'xing_ming' => '',
-        ])), JSON_UNESCAPED_UNICODE);
+//        echo json_encode((new ChaBanShengLogic())->check(new ChaBanShengCheckObject([
+//            'zhun_kao_zheng_hao' => '',
+//            'xing_ming' => '',
+//        ])), JSON_UNESCAPED_UNICODE);
+//
+//        echo json_encode((new ChengRenGaoKaoLogic())->check(new ChengRenGaoKaoCheckObject([
+//            'zhun_kao_zheng_hao' => '',
+//            'xing_ming' => '',
+//        ])), JSON_UNESCAPED_UNICODE);
+//
+//        echo json_encode((new JiaoShiZiGeLogic())->check(new JiaoShiZiGeCheckObject([
+//            'zhun_kao_zheng_hao' => '',
+//            'xing_ming' => '',
+//        ])), JSON_UNESCAPED_UNICODE);
+//
+//        echo json_encode((new PuTongHuaLogic())->check(new PuTongHuaCheckObject([
+//            'zhun_kao_zheng_hao' => '',
+//            'xing_ming' => '',
+//        ])), JSON_UNESCAPED_UNICODE);
 
         echo json_encode((new ZhuanChaBenLogic())->check(new ZhuanChaBenCheckObject([
-            'zhun_kao_zheng_hao' => '',
-            'xing_ming' => '',
+            'zhun_kao_zheng_hao' => '1013613X',
+            'xing_ming' => '缪昊洋',
         ])), JSON_UNESCAPED_UNICODE);
     }
 }
