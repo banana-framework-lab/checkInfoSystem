@@ -8,11 +8,11 @@ class ZhuanChaBenForm extends AbstractForm
 {
     public function check()
     {
-        $this->setRequestField(['info_zhengjianbianhao', 'info_xingming']);
+        $this->setRequestField(['zheng_jian_hou_ba_wei', 'xing_ming']);
 
         $this->setRequestErrMsg([
-            'info_zhengjianbianhao' => '证件编号',
-            'info_xingming' => '姓名',
+            'zheng_jian_hou_ba_wei' => '证件编号',
+            'xing_ming' => '姓名',
         ]);
     }
 }
