@@ -12,6 +12,6 @@ class CheckInfoZhuanChaBenModel extends AbstractMySqlModel
     public function check(ZhuanChaBenCheckObject $object)
     {
         $b = $this->builder->from($this->tableName . date('Y'))->where($object->toArray());
-        return $b->first();
+        return $b->get();
     }
 }
