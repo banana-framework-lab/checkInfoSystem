@@ -11,6 +11,6 @@ class CheckInfoJiaoShiZiGeModel extends AbstractMySqlModel
 
     public function check(JiaoShiZiGeCheckObject $object)
     {
-        return $this->builder->from($this->tableName . date('Y'))->where($object->toArray())->first();
+        return $this->builder->from($this->tableName . date('Y'))->where($object->toArray())->get();
     }
 }
